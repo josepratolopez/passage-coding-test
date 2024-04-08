@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx-config/vhost:/etc/nginx/conf.d
+      - ./docker/nginx-config/nginx.conf:/etc/nginx/nginx.conf
+      - ./:/var/www/html
+    depends_on:
+      - php-fpm
+    networks:
+      - passage_test
+
+  php-fpm:
+    image: bitnami/php-fpm
+    volumes:
+      - ./:/var/www/html
+    working_dir: /var/www/html
+    command: ["php-fpm", "-F"]
+    networks:
+      - passage_test
+
+networks:
+  passage_test:
