@@ -18,6 +18,8 @@ This will start the containers, and then you can run the app in your browser nor
 
 Since it doesn't contain unit tests because the timeline, you can just add more arrays o modifying existing in ``index.php`` file in the ``$matrixPool`` variable.
 
+Note: every change made on PHP file will require to restart PHP container due to OPcache setting that don't have the validate timestamp enabled to apply changes on cache.
+
 ### Validations
 
 The ``\Passage\Processor\SquareMatrixEvaluator`` class evaluates if the array is compliant with the following rules:
